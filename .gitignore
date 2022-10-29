@@ -1,0 +1,4 @@
+dist-newstyle/
+result
+.vscode/
+/settings.nix
