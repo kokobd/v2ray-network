@@ -20,14 +20,19 @@ import ../common/v2ray.nix
       // List of inbound proxy configurations.
       "inbounds": [
         {
-          "listen": "127.0.0.1",
-          "port": 1080,
+          "listen": "${settings.client.ip}",
+          "port": ${toString settings.client.socksPort},
           "protocol": "socks",
           "settings": {
             "auth": "noauth",
             "udp": true,
             "userLevel": 0
           }
+        },
+        {
+          "listen": "${settings.client.ip}",
+          "port": ${toString settings.client.httpPort},
+          "protocol": "http"
         }
       ],
       // List of outbound proxy configurations.
