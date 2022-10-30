@@ -14,9 +14,9 @@
     with flake-utils.lib;
     let
       settings = import ./settings.nix;
-      mkClient = system:
+      mkClient = system: name: path:
         let
-          client = import ./client
+          client = import path
             {
               pkgs = nixpkgs.legacyPackages."${system}";
               inherit settings;
@@ -24,7 +24,7 @@
         in
         {
           type = "app";
-          program = "${client}/bin/v2ray";
+          program = "${client}/bin/${name}";
         };
     in
     {
@@ -55,7 +55,11 @@
           };
       };
 
-      apps."${system.x86_64-linux}".client = mkClient system.x86_64-linux;
-      apps."${system.aarch64-darwin}".client = mkClient system.aarch64-darwin;
+      apps."${system.x86_64-linux}" = {
+        client = mkClient system.x86_64-linux "v2ray" ./client;
+      };
+      apps."${system.aarch64-darwin}" = {
+        client = mkClient system.aarch64-darwin "v2ray" ./client;
+      };
     };
 }

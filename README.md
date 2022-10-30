@@ -31,6 +31,13 @@ running `nix build` or `nixos-rebuild`
     port = 12345;
   };
 
+  # If this is defined, gateway and client will connect to the backup trojan service
+  trojan = {
+    localPort = 1081;
+    configJson = ''
+    '';
+  };
+
   # Settings for the gateway in your local network
   gateway = {
     # local ip
