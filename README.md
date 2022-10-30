@@ -83,12 +83,12 @@ Remember:
 
 Steps:
 
-Enable nix flakes. Add this line to your `configuration.nix` file
+Enable nix flakes. Add this line to your `configuration.nix` file, then run `sudo nixos-rebuild switch`
 ```
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ```
 
-Switch to the root user, and change to `/etc` directory
+Switch to the root user, and change to `/etc`
 ```sh
 sudo su
 cd /etc
@@ -113,7 +113,8 @@ Rebuild NixOS
 nixos-rebuild --flake .#gateway switch
 ```
 
-After that, v2ray service is automatically started. You may login with user `nixos` and password `123456`.
+After that, v2ray service is automatically started.
+You may login NixOS with user `nixos` and password `123456`.
 SSH service is disabled for security reasons.
 
 ## Client
@@ -124,7 +125,7 @@ nix run .#client
 
 Then configure your system proxy settings to use the provided http or socks proxy.
 
-Example for command line programs:
+Example for configuring command line programs:
 ```
 export http_proxy=http://127.0.0.1:8118 https_proxy=$http_proxy
 export socks_proxy=socks://127.0.0.1:1080/
