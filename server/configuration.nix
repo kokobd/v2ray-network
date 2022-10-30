@@ -44,7 +44,7 @@
                 "decryption": "none",
                 "fallbacks": [
                   {
-                    "dest": "site:8080"
+                    "dest": "127.0.0.1:${toString settings.server.sitePort}"
                   }
                 ]
               },
@@ -80,5 +80,45 @@
         }
       '';
     };
+
+    systemd.services.v2ray-site =
+      let
+        indexHtml = pkgs.writeTextFile {
+          name = "index.html";
+          text = ''
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+              <meta charset="UTF-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Hello</title>
+            </head>
+
+            <body>
+              <div>The site is still under construction. Main page is not accessible. Please access specific paths directly.</div>
+            </body>
+
+            </html>
+          '';
+        };
+
+        site = pkgs.writeScriptBin "v2ray-site" ''
+          #!${pkgs.bash}/bin/bash
+
+          ${pkgs.miniserve}/bin/miniserve -i 127.0.0.1 -p ${toString settings.server.sitePort} ${indexHtml}
+        '';
+      in
+      {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" "nss-lookup.target" ];
+        serviceConfig = {
+          User = "root";
+          NoNewPrivileges = "true";
+          ExecStart = "${site}/bin/v2ray-site";
+          Restart = "on-failure";
+        };
+      };
   };
 }

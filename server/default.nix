@@ -15,5 +15,6 @@ pkgs.buildEnv {
   name = "v2ray";
   paths = [
     eval.config.systemd.units."v2ray.service".unit
+    eval.config.systemd.units."v2ray-site.service".unit
   ];
 }

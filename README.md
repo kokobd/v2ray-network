@@ -17,6 +17,7 @@ running `nix build` or `nixos-rebuild`
   server = {
     ip = "1.1.1.1";
     port = 443;
+    sitePort = 8080;
     tls = {
       # Use the paths to your own certificate files
       certificateFile = "/etc/letsencrypt/live/site.example.com/fullchain.pem";
@@ -68,16 +69,20 @@ Install on a non-NixOS Linux server:
 nix build .#server
 nix-env -i ./result
 sudo ln -s $HOME/.nix-profile/v2ray.service /etc/systemd/system/v2ray.service
+sudo ln -s $HOME/.nix-profile/v2ray-site.service /etc/systemd/system/v2ray-site.service
 # add v2ray.service to the wants list of multi-uesr.target
 # you may use 'systemctl status multi-user.target' to find the location of multi-user.target
 sudo ln -s $HOME/.nix-profile/v2ray.service /lib/systemd/system/multi-user.target.wants/v2ray.service
+sudo ln -s $HOME/.nix-profile/v2ray-site.service /lib/systemd/system/multi-user.target.wants/v2ray-site.service
 sudo systemctl daemon-reload
 sudo systemctl start v2ray
+sudo systemctl start v2ray-site
 ```
 
 ## Transit
 
-Use `nix build .#transit` to build the systemd service, then follow the steps in [Server](#Server)
+Use `nix build .#transit` to build the systemd service, then follow the steps in [Server](#Server), except
+that `v2ray-site.service` is not needed.
 
 ## Gateway
 
