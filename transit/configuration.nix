@@ -57,13 +57,7 @@
                 "security": "tls",
                 "tlsSettings": {
                   "serverName": "site.zelinf.net",
-                  "allowInsecure": false,
-                  "certificates": [
-                    {
-                      "certificateFile": "${settings.server.tls.certificateFile}",
-                      "keyFile": "${settings.server.tls.keyFile}"
-                    }
-                  ]
+                  "allowInsecure": false
                 }
               }
             }

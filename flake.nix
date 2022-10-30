@@ -37,21 +37,23 @@
           };
         };
 
-      packages."${system.x86_64-linux}".server = import ./server
-        {
-          pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
-          nixos = nixpkgs.lib.nixosSystem;
-          system = system.x86_64-linux;
-          inherit settings;
-        };
+      packages."${system.x86_64-linux}" = {
+        server = import ./server
+          {
+            pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
+            nixos = nixpkgs.lib.nixosSystem;
+            system = system.x86_64-linux;
+            inherit settings;
+          };
 
-      packages."${system.x86_64-linux}".transit = import ./transit
-        {
-          pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
-          nixos = nixpkgs.lib.nixosSystem;
-          system = system.x86_64-linux;
-          inherit settings;
-        };
+        transit = import ./transit
+          {
+            pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
+            nixos = nixpkgs.lib.nixosSystem;
+            system = system.x86_64-linux;
+            inherit settings;
+          };
+      };
 
       apps."${system.x86_64-linux}".client = mkClient system.x86_64-linux;
       apps."${system.aarch64-darwin}".client = mkClient system.aarch64-darwin;

@@ -18,7 +18,7 @@ running `nix build` or `nixos-rebuild`
     ip = "1.1.1.1";
     port = 443;
     tls = {
-      # use the paths to your own certificate files
+      # Use the paths to your own certificate files
       certificateFile = "/etc/letsencrypt/live/site.example.com/fullchain.pem";
       keyFile = "/etc/letsencrypt/live/site.example.com/privkey.pem";
     };
@@ -67,6 +67,10 @@ sudo ln -s $HOME/.nix-profile/v2ray.service /lib/systemd/system/multi-user.targe
 sudo systemctl daemon-reload
 sudo systemctl start v2ray
 ```
+
+## Transit
+
+Use `nix build .#transit` to build the systemd service, then follow the steps in [Server](#Server)
 
 ## Gateway
 
