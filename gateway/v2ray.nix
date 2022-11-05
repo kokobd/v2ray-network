@@ -49,6 +49,7 @@ in
   imports = [
     ../common/v2ray-service.nix
     ../common/trojan-service.nix
+    ./firewall.nix
   ];
   config = {
     services = {
