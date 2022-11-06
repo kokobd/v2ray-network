@@ -43,10 +43,11 @@ running `nix build` or `nixos-rebuild`
   gateway = {
     # local ip
     ip = "192.168.31.4";
-    # prefix length for your local network
+    # prefix length of your local network
     prefixLength = 16;
     # router local ip
     router = "192.168.31.1";
+    localNetworkRange = "192.168.0.0/16";
   };
 
   client = {
