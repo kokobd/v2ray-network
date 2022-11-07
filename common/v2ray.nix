@@ -12,23 +12,23 @@ let
   v2ray =
     if flavor == "v2fly"
     then
-      (pkgs.buildGo118Module
+      (pkgs.buildGo119Module
         rec {
           pname = "v2ray";
-          version = "4.45.2";
+          version = "5.1.0";
 
           src = pkgs.fetchFromGitHub {
             owner = "v2fly";
             repo = "v2ray-core";
             rev = "v${version}";
-            sha256 = "sha256-0K9S5r3Bp39Egu6p9PTse9KcaqP5SDDsKEROcM2iPX0=";
+            sha256 = "sha256-87BtyaJN6qbinZQ+6MAwaK62YzbVnncj4qnEErG5tfA=";
           };
 
-          vendorSha256 = "sha256-TbWMbIT578I8xbNsKgBeSP4MewuEKpfh62ZbJIeHgDs=";
+          vendorSha256 = "sha256-RuDCAgTzqwe5fUwa9ce2wRx4FPT8siRLbP7mU8/jg/Y=";
           subPackages = [ "main" ];
         })
     else
-      (pkgs.buildGo118Module rec {
+      (pkgs.buildGo119Module rec {
         pname = "v2ray";
         version = "1.6.3";
 
