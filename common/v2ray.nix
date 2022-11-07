@@ -30,16 +30,16 @@ let
     else
       (pkgs.buildGo118Module rec {
         pname = "v2ray";
-        version = "1.6.0";
+        version = "1.6.3";
 
         src = pkgs.fetchFromGitHub {
           owner = "XTLS";
           repo = "Xray-core";
           rev = "v${version}";
-          sha256 = "sha256-/Ei2fWNMAv8O0vIlBtjGBITt4LRI2SlwmUPnS5qJpfg=";
+          sha256 = "sha256-akJFqWKDwTsKz3wXDuQRIZf5in15+68PXKbUcyoH+YA=";
         };
 
-        vendorSha256 = "sha256-QAmCQF6wYaQoFzSyfDuwR+We6RYrYz7Jdhqryx+IzEw=";
+        vendorSha256 = "sha256-tMF2Xmatj4LRFodi5/vovjGx0S4+42NtK1FNrc0PxR0=";
         subPackages = [ "main" ];
       });
 

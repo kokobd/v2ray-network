@@ -94,41 +94,7 @@ Remember:
 2. The gateway affects all devices that connects to the same router
 3. Set the gateway ip to this server in your router settings
 
-Steps:
-
-Enable nix flakes. Add this line to your `configuration.nix` file, then run `sudo nixos-rebuild switch`
-```
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
-```
-
-Switch to the root user, and change to `/etc`
-```sh
-sudo su
-cd /etc
-```
-
-Get the sources
-```sh
-curl -L https://github.com/kokobd/v2ray-network/archive/main.tar.gz --output v2ray-network.tar.gz
-tar xf v2ray-network.tar.gz
-mv nixos nixos-bak
-mv v2ray-network-main nixos
-```
-
-Copy your existing `hardware-configuration.nix`
-
-```sh
-cp nixos-bak/hardware-configuration.nix nixos/gateway/
-```
-
-Rebuild NixOS
-```sh
-nixos-rebuild --flake .#gateway switch
-```
-
-After that, v2ray service is automatically started.
-You may login NixOS with user `nixos` and password `123456`.
-SSH service is disabled for security reasons.
+Import `v2ray-network` in your own flake.
 
 ## Client
 
