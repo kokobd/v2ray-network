@@ -102,7 +102,7 @@ Example:
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    v2ray-network.url = "github:kokobd/v2ray-network/gateway-machines";
+    v2ray-network.url = "github:kokobd/v2ray-network/main";
     v2ray-network.inputs.nixpkgs.follows = "nixpkgs";
   };
   
