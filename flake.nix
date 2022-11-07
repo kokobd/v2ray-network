@@ -2,12 +2,8 @@
   description = "v2ray configurations";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    # agenix = {
-    #   url = "github:ryantm/agenix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = inputs@{ self, nixpkgs, flake-utils }:
@@ -30,12 +26,21 @@
     {
       nixosConfigurations =
         {
-          gateway = nixpkgs.lib.nixosSystem {
+          gateway-hyperV = nixpkgs.lib.nixosSystem {
             system = system.x86_64-linux;
-            specialArgs = { inherit inputs; inherit settings; };
-            modules = [ ./gateway/configuration.nix ];
+            specialArgs = { inherit settings; };
+            modules = [ ./gateway/machines/hyper-v.nix ];
+          };
+
+          gateway-respberryPi3BP = nixpkgs.lib.nixosSystem {
+            system = system.aarch64-linux;
+            specialArgs = { inherit settings; };
+            modules = [ ./gateway/machines/raspberryPi3BP.nix ];
           };
         };
+      nixosModules = {
+        gateway = import ./gateway/v2ray.nix;
+      };
 
       packages."${system.x86_64-linux}" = {
         server = import ./server

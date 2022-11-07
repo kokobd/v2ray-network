@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./firewall.nix
-    ./v2ray.nix
+    ./hyper-v-hardware.nix
+    ../v2ray.nix
   ];
 
   boot.loader = {

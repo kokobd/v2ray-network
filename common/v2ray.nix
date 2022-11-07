@@ -12,34 +12,34 @@ let
   v2ray =
     if flavor == "v2fly"
     then
-      (pkgs.buildGo118Module
+      (pkgs.buildGo119Module
         rec {
           pname = "v2ray";
-          version = "4.45.2";
+          version = "5.1.0";
 
           src = pkgs.fetchFromGitHub {
             owner = "v2fly";
             repo = "v2ray-core";
             rev = "v${version}";
-            sha256 = "sha256-0K9S5r3Bp39Egu6p9PTse9KcaqP5SDDsKEROcM2iPX0=";
+            sha256 = "sha256-87BtyaJN6qbinZQ+6MAwaK62YzbVnncj4qnEErG5tfA=";
           };
 
-          vendorSha256 = "sha256-TbWMbIT578I8xbNsKgBeSP4MewuEKpfh62ZbJIeHgDs=";
+          vendorSha256 = "sha256-RuDCAgTzqwe5fUwa9ce2wRx4FPT8siRLbP7mU8/jg/Y=";
           subPackages = [ "main" ];
         })
     else
-      (pkgs.buildGo118Module rec {
+      (pkgs.buildGo119Module rec {
         pname = "v2ray";
-        version = "1.6.0";
+        version = "1.6.3";
 
         src = pkgs.fetchFromGitHub {
           owner = "XTLS";
           repo = "Xray-core";
           rev = "v${version}";
-          sha256 = "sha256-/Ei2fWNMAv8O0vIlBtjGBITt4LRI2SlwmUPnS5qJpfg=";
+          sha256 = "sha256-akJFqWKDwTsKz3wXDuQRIZf5in15+68PXKbUcyoH+YA=";
         };
 
-        vendorSha256 = "sha256-QAmCQF6wYaQoFzSyfDuwR+We6RYrYz7Jdhqryx+IzEw=";
+        vendorSha256 = "sha256-tMF2Xmatj4LRFodi5/vovjGx0S4+42NtK1FNrc0PxR0=";
         subPackages = [ "main" ];
       });
 
