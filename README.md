@@ -96,6 +96,26 @@ Remember:
 
 Import `v2ray-network` in your own flake.
 
+Example:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    v2ray-network.url = "github:kokobd/v2ray-network/gateway-machines";
+    v2ray-network.inputs.nixpkgs.follows = "nixpkgs";
+  };
+  
+  outputs = { self, nixpkgs, v2ray-network, ...}: {
+    nixosConfigurations.gateway = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { settings = import ./settings.nix; };
+      modules = [ ./configuration.nix v2ray-network.nixosModules.gateway ];
+    };
+  };
+}
+```
+
 ## Client
 
 ```sh
