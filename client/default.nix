@@ -25,19 +25,19 @@ let
         }
       },
     '' else ''
-    {
-      "tag": "primary",
-      "protocol": "socks",
-      "settings": {
-        "servers": [
-          {
-            "address": "127.0.0.1",
-            "port": ${toString settings.trojan.localPort}
-          }
-        ]
-      }
-    },
-  '';
+      {
+        "tag": "primary",
+        "protocol": "socks",
+        "settings": {
+          "servers": [
+            {
+              "address": "127.0.0.1",
+              "port": ${toString settings.trojan.localPort}
+            }
+          ]
+        }
+      },
+    '';
 
   v2ray = import ../common/v2ray.nix
     {
@@ -231,11 +231,12 @@ let
         } else null;
 in
 if trojan != null
-then pkgs.writeScriptBin "v2ray" 
-''
-  ${trojan}/bin/trojan &
-  P1=$!
-  ${v2ray}/bin/v2ray
-  kill $P1
-''
+then
+  pkgs.writeScriptBin "v2ray"
+    ''
+      ${trojan}/bin/trojan &
+      P1=$!
+      ${v2ray}/bin/v2ray
+      kill $P1
+    ''
 else v2ray

@@ -18,7 +18,7 @@ let
           }
         },
       '' else ''
-            {
+      {
         "tag": "primary",
         "protocol": "vmess",
         "settings": {
