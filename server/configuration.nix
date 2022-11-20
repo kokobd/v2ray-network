@@ -26,6 +26,13 @@
                   "geoip:private"
                 ],
                 "outboundTag": "block"
+              },
+              {
+                "type": "field",
+                "domains": [
+                  "domain:amazon.com"
+                ],
+                "outboundTag": "primary"
               }
             ]
           },
@@ -69,18 +76,21 @@
           ],
           "outbounds": [
             {
+              "tag": "direct",
+              "protocol": "freedom"
+            },
+            {
               "tag": "primary",
-              "protocol": "vmess",
+              "protocol": "vless",
               "settings": {
                 "vnext": [
                   {
-                    "address": "${settings.server-no-cn.ip}",
-                    "port": ${toString settings.server-no-cn.port},
+                    "address": "74.211.99.199",
+                    "port": 443,
                     "users": [
                       {
                         "id": "${settings.userID}",
-                        "alterId": 0,
-                        "security": "auto",
+                        "encryption": "none",
                         "level": 0
                       }
                     ]
@@ -88,8 +98,11 @@
                 ]
               },
               "streamSettings": {
-                "sockopt": {
-                  "mark": 255
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                  "serverName": "site.zelinf.net",
+                  "allowInsecure": false
                 }
               }
             },
