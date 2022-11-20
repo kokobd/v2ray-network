@@ -56,7 +56,7 @@ let
 
     export V2RAY_LOCATION_ASSET=${assets}/share/v2ray
     export XRAY_LOCATION_ASSET=${assets}/share/v2ray
-    ${v2ray}/bin/main -c ${configFile}
+    ${v2ray}/bin/main run -c ${configFile}
   '';
 in
 wrapper

@@ -230,9 +230,12 @@ let
           configJson = settings.trojan.configJson;
         } else null;
 in
-pkgs.writeScriptBin "v2ray" ''
+if trojan != null
+then pkgs.writeScriptBin "v2ray" 
+''
   ${trojan}/bin/trojan &
   P1=$!
   ${v2ray}/bin/v2ray
   kill $P1
 ''
+else v2ray
