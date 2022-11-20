@@ -69,8 +69,29 @@
           ],
           "outbounds": [
             {
-              "tag": "direct",
-              "protocol": "freedom"
+              "tag": "primary",
+              "protocol": "vmess",
+              "settings": {
+                "vnext": [
+                  {
+                    "address": "${settings.server-no-cn.ip}",
+                    "port": ${toString settings.server-no-cn.port},
+                    "users": [
+                      {
+                        "id": "${settings.userID}",
+                        "alterId": 0,
+                        "security": "auto",
+                        "level": 0
+                      }
+                    ]
+                  }
+                ]
+              },
+              "streamSettings": {
+                "sockopt": {
+                  "mark": 255
+                }
+              }
             },
             {
               "tag": "block",

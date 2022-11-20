@@ -42,23 +42,22 @@
         gateway = import ./gateway/v2ray.nix;
       };
 
-      packages."${system.x86_64-linux}" = {
-        server = import ./server
-          {
+      packages."${system.x86_64-linux}" =
+        let
+          params = {
             pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
             nixos = nixpkgs.lib.nixosSystem;
             system = system.x86_64-linux;
             inherit settings;
           };
+        in
+        {
+          server = import ./server params;
 
-        transit = import ./transit
-          {
-            pkgs = nixpkgs.legacyPackages."${system.x86_64-linux}";
-            nixos = nixpkgs.lib.nixosSystem;
-            system = system.x86_64-linux;
-            inherit settings;
-          };
-      };
+          server-no-cn = import ./server/no-cn.nix params;
+
+          transit = import ./transit params;
+        };
 
       apps."${system.x86_64-linux}" = {
         client = mkClient system.x86_64-linux "v2ray" ./client;
