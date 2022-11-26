@@ -199,7 +199,7 @@ in
                   "domainMatcher": "mph",
                   "domains": [
                     "geosite:cn",
-                    // "geosite:playstation",
+                    "geosite:category-games@cn",
                     "domain:bytedance.net",
                     "domain:byted.org",
                     "domain:bytedance.com",
