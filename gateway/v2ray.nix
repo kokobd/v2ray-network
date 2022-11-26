@@ -199,7 +199,7 @@ in
                   "domainMatcher": "mph",
                   "domains": [
                     "geosite:cn",
-                    "geosite:category-games@cn",
+                    "geosite:steam",
                     "domain:bytedance.net",
                     "domain:byted.org",
                     "domain:bytedance.com",
