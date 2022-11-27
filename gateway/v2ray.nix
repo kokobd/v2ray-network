@@ -200,6 +200,7 @@ in
                   "domains": [
                     "geosite:cn",
                     "geosite:steam",
+                    "domain:xiaoheimi.net",
                     "domain:bytedance.net",
                     "domain:byted.org",
                     "domain:bytedance.com",
