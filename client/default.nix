@@ -59,7 +59,7 @@ let
           // List of inbound proxy configurations.
           "inbounds": [
             {
-              "listen": "${settings.client.ip}",
+              "listen": "0.0.0.0",
               "port": ${toString settings.client.socksPort},
               "protocol": "socks",
               "settings": {
@@ -69,7 +69,7 @@ let
               }
             },
             {
-              "listen": "${settings.client.ip}",
+              "listen": "0.0.0.0",
               "port": ${toString settings.client.httpPort},
               "protocol": "http"
             }
