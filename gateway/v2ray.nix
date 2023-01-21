@@ -45,7 +45,7 @@ let
       },
     '';
   directConnectDomainsPartialJsonList = "," +
-    (lib.strings.concatStringsSep "," settings.gateway.directConnect.domains);
+    (lib.strings.concatStringsSep "," (builtins.map (str: "\"${str}\"") settings.gateway.directConnect.domains));
 in
 {
   imports = [
