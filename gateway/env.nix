@@ -2,6 +2,7 @@
 , nixos
 , system
 , settings
+, ...
 }:
 
 let
