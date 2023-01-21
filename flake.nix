@@ -49,6 +49,7 @@
               let
                 params = {
                   pkgs = nixpkgs.legacyPackages.${system};
+                  lib = nixpkgs.lib;
                   nixos = nixpkgs.lib.nixosSystem;
                   system = system;
                   inherit settings;

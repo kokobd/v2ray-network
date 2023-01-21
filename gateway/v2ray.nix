@@ -1,4 +1,4 @@
-{ pkgs, settings, ... }:
+{ lib, pkgs, settings, ... }:
 
 let
   useTrojan = builtins.hasAttr "trojan" settings;
@@ -44,6 +44,8 @@ let
         }
       },
     '';
+  directConnectDomainsPartialJsonList = "," +
+    (lib.strings.concatStringsSep "," settings.gateway.directConnect.domains);
 in
 {
   imports = [
@@ -198,13 +200,8 @@ in
                   "type": "field",
                   "domainMatcher": "mph",
                   "domains": [
-                    "geosite:cn",
-                    "geosite:steam",
-                    "domain:xiaoheimi.net",
-                    "domain:bytedance.net",
-                    "domain:byted.org",
-                    "domain:bytedance.com",
-                    "domain:bwg.net"
+                    "geosite:cn"
+                    ${directConnectDomainsPartialJsonList}
                   ],
                   "outboundTag": "direct"
                 }
@@ -220,8 +217,8 @@ in
                   "port": 53,
                   "domains": [
                     "geosite:cn",
-                    "domain:ntp.org",
-                    "domain:nigirocloud.com"
+                    "domain:ntp.org"
+                    ${directConnectDomainsPartialJsonList}
                   ]
                 }
               ]
